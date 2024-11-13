@@ -1,0 +1,10 @@
+.sort-menu {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 20px;
+}
+
+.sort-menu .sort-dropdown {
+    background: transparent;
+    border-color: rgb(255 255 255 / 50%);
+}

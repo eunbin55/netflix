@@ -1,0 +1,30 @@
+.movie-card {
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    position: relative;
+    padding-top: 150%; /* 2:3 비율 */
+}
+
+@media screen and (min-width:1024px)   {
+    .movie-card {
+        /* width: 220px; */
+    }
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    background: rgb(0 0 0 / 56%);
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+}
+
+.overlay:hover{
+    opacity: 1;
+}
+

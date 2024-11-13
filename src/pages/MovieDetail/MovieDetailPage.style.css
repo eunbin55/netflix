@@ -1,0 +1,15 @@
+.movie-poster {
+    background-size: cover;
+    background-position: center;
+    padding-top: 150%;
+}
+
+.movie-overview {
+    border-block: 1px solid #ccc;
+    margin: 10px;
+    padding-block: 10px;
+}
+
+.movie-detail-wrap {
+    margin-top: 20px;
+}

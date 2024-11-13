@@ -1,0 +1,12 @@
+.genre {
+    margin: 2px;
+}
+
+.icon-star, .icon-users {
+    margin: 2px;
+}
+
+.movie-vote, .movie-popularity {
+    display: flex;
+    align-items: baseline;
+}
