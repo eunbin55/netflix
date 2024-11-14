@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Badge, Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useGetMovieById } from "../../hooks/useGetMovieById";
 import Loading from "../../common/Loading";
