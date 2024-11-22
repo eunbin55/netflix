@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useGetMovieById } from "../../hooks/useGetMovieById";
@@ -9,11 +9,16 @@ import {
   MoviePopularityInfo,
   MovieVoteInfo,
 } from "../../common/MovieInfo/MovieInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
+import YouTubeModal from "./components/YouTubeModal";
+import { useGetVideoById } from "../../hooks/useGetVideoKeyById";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useGetMovieById({ id });
-  console.log(data);
+  const { data: videoData } = useGetVideoById(id);
+  const [modalVisible, setModalVisible] = useState(false);
   if (isLoading) return <Loading />;
   if (isError) return <Alert>{error}</Alert>;
   if (data)
@@ -40,7 +45,32 @@ const MovieDetailPage = () => {
             <h1>{data.original_title}</h1>
             <MovieVoteInfo vote={data.vote_average} />
             <MoviePopularityInfo popularity={data.popularity} />
-            <div className="movie-overview">{data.overview}</div>
+            <div>
+              <div className="movie-detail-info">
+                <h4>Overview</h4>
+                <div>{data.overview}</div>
+              </div>
+              <div className="movie-detail-info">
+                <h4>Release Date</h4>
+                <div>{data.release_date}</div>
+              </div>
+            </div>
+            {!!videoData && (
+              <div
+                className="play-button"
+                onClick={() => setModalVisible(true)}
+              >
+                <FontAwesomeIcon icon={faCirclePlay} size="xl" />
+                <span>Play Trailer</span>
+              </div>
+            )}
+            {modalVisible && (
+              <YouTubeModal
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
+                videoData={videoData}
+              />
+            )}
           </Col>
         </Row>
       </Container>

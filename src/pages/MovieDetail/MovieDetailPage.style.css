@@ -4,12 +4,49 @@
     padding-top: 150%;
 }
 
-.movie-overview {
-    border-block: 1px solid #ccc;
+.movie-detail-info {
+    border-top: 1px solid #ccc;
     margin: 10px;
     padding-block: 10px;
 }
 
+.movie-detail-info:last-of-type {
+    border-bottom: 1px solid #ccc;
+}
+
+.movie-detail-info > h4 {
+    font-weight: bold;
+}
+
 .movie-detail-wrap {
-    margin-top: 20px;
+    margin-block: 20px;
+}
+
+.play-button {
+    display: flex;
+    align-items: end;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: fit-content;
+}
+
+.play-button span {
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.play-button:hover {
+    color:#ffffff94;
+    transition: 0.5s;
+}
+
+.youtube-modal .modal-content {
+    background-color: black;
+}
+
+.video-wrap {
+    display: flex;
+    justify-content: center;
 }

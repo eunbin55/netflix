@@ -6,7 +6,6 @@ import MovieCard from "../../common/MovieCard/MovieCard";
 import Loading from "../../common/Loading";
 import ReactPaginate from "react-paginate";
 import "./MoviePage.style.css";
-import { useSortMovies } from "../../hooks/useSortMovies";
 
 const MoviePage = () => {
   const [query, _setQuery] = useSearchParams();
@@ -16,8 +15,8 @@ const MoviePage = () => {
   const { data, isLoading, isError, error } = useSearchMovieQuery({
     keyword,
     page,
+    sortKey,
   });
-  const { data: sortedData } = useSortMovies({ sortKey, page });
   const handlePageClick = ({ selected }) => {
     setPage(selected + 1);
   };
@@ -35,29 +34,31 @@ const MoviePage = () => {
   return (
     <Container>
       <Row>
-        <Col lg={4} xs={12}>
-          <div className="sort-menu">
-            <h3>Sort</h3>
-            <Dropdown onSelect={(e) => onSort(e)}>
-              <Dropdown.Toggle variant="secondary" className="sort-dropdown">
-                Sort Results By
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {MenuItems.map((menu) => (
-                  <Dropdown.Item
-                    eventKey={menu.key}
-                    active={sortKey === menu.key}
-                  >
-                    {menu.value}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-        </Col>
-        <Col lg={8} xs={12}>
+        {!keyword && (
+          <Col lg={4} xs={12}>
+            <div className="sort-menu">
+              <h3>Sort</h3>
+              <Dropdown onSelect={(e) => onSort(e)}>
+                <Dropdown.Toggle variant="secondary" className="sort-dropdown">
+                  Sort Results By
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {MenuItems.map((menu) => (
+                    <Dropdown.Item
+                      eventKey={menu.key}
+                      active={sortKey === menu.key}
+                    >
+                      {menu.value}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </Col>
+        )}
+        <Col lg={!keyword ? 8 : 12} xs={12}>
           <Row>
-            {(sortedData ?? data)?.results
+            {data?.results
               .filter((movie) => movie.poster_path !== null)
               .map((movie, index) => (
                 <Col key={index} lg={4} xs={12}>
