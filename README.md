@@ -1,4 +1,4 @@
-# Go to demo page
+# Go to page
 https://eb-movies.netlify.app/
 
 # Getting Started with Create React App
